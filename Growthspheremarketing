@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GrowthSphere Marketing Solutions — We Grow Brands</title>
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet">
+ 
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05060D;
+  --bg2:#080A14;
+  --bg3:#0D1020;
+  --surface:rgba(255,255,255,0.035);
+  --o:#FF4500;
+  --o2:#FF6B35;
+  --o3:#FF8C5E;
+  --white:#F2EDE6;
+  --muted:#6B7590;
+  --muted2:#9BA6BC;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,69,0,0.2);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+ 
+/* CURSOR */
+.cur{width:6px;height:6px;background:var(--o);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:normal;transition:transform 0.08s}
+.cur-ring{width:32px;height:32px;border:1.5px solid rgba(255,69,0,0.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.18s cubic-bezier(0.25,0.46,0.45,0.94)}
+body:hover .cur-ring{opacity:1}
+ 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(5,6,13,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:2px;line-height:1}
+.nav-logo span{color:var(--o)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.82rem;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;letter-spacing:0.04em;text-transform:uppercase}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--o);color:#fff;border:none;padding:0.65rem 1.5rem;border-radius:4px;font-size:0.8rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.25s;position:relative;overflow:hidden}
+.nav-cta::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:opacity 0.2s}
+.nav-cta:hover::after{opacity:1}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,69,0,0.4)}
+ 
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:10rem 5% 6rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-orb1{position:absolute;top:-15%;right:-5%;width:800px;height:800px;background:radial-gradient(circle,rgba(255,69,0,0.1) 0%,transparent 60%);animation:orb1 8s ease-in-out infinite alternate}
+.hero-orb2{position:absolute;bottom:-25%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,69,0,0.05) 0%,transparent 65%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 20%,black 40%,transparent 100%)}
+.hero-noise{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+@keyframes orb1{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.1)}}
+ 
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,69,0,0.08);border:1px solid rgba(255,69,0,0.25);color:var(--o3);font-size:0.72rem;font-weight:600;padding:0.4rem 1rem;border-radius:2px;margin-bottom:2.5rem;letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 0.6s ease both}
+.hero-pill-dot{width:5px;height:5px;background:var(--o);border-radius:50%;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+ 
+.hero-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,13rem);line-height:0.88;letter-spacing:2px;color:var(--white);margin-bottom:2.5rem;animation:fadeUp 0.7s 0.1s ease both}
+.hero-headline .line2{display:block;color:var(--o);font-family:'Fraunces',serif;font-style:italic;font-size:clamp(4.5rem,12vw,12rem);font-weight:300;letter-spacing:-1px;line-height:0.9}
+.hero-headline .line3{display:block;-webkit-text-stroke:1px rgba(255,255,255,0.3);color:transparent;font-size:clamp(4.5rem,11vw,11rem)}
+ 
+.hero-sub{font-size:1.05rem;color:var(--muted2);line-height:1.85;max-width:520px;margin-bottom:3rem;animation:fadeUp 0.7s 0.2s ease both;font-weight:300}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;animation:fadeUp 0.7s 0.3s ease both}
+.btn-primary{background:var(--o);color:#fff;border:none;padding:1rem 2.4rem;border-radius:4px;font-size:0.9rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.25s;letter-spacing:0.04em;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,0.15);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.5s,height 0.5s}
+.btn-primary:hover::before{width:300px;height:300px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 50px rgba(255,69,0,0.35)}
+.btn-line{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.15);padding:1rem 2.4rem;border-radius:4px;font-size:0.9rem;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.25s}
+.btn-line:hover{border-color:rgba(255,255,255,0.4);transform:translateY(-2px)}
+ 
+.hero-numbers{margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);display:flex;gap:4rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.45s ease both}
+.hero-num{display:flex;flex-direction:column;gap:4px}
+.hero-num strong{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--white);letter-spacing:1px;line-height:1}
+.hero-num strong span{color:var(--o)}
+.hero-num small{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:500}
+ 
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+ 
+/* MARQUEE STRIP */
+.marquee-strip{padding:1.5rem 0;background:var(--o);overflow:hidden;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
+.marquee-inner{display:flex;gap:0;animation:marquee-fast 18s linear infinite;width:max-content}
+.marquee-item{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:rgba(255,255,255,0.9);padding:0 2.5rem;border-right:1px solid rgba(255,255,255,0.25);white-space:nowrap}
+@keyframes marquee-fast{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+ 
+/* SECTION SHARED */
+.sec-eyebrow{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--o);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:'';width:24px;height:1px;background:var(--o);flex-shrink:0}
+.sec-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5.5rem);line-height:0.9;letter-spacing:1px;color:var(--white);margin-bottom:1.2rem}
+.sec-h2 em{color:var(--o);font-family:'Fraunces',serif;font-style:italic;font-weight:300}
+.sec-p{color:var(--muted2);font-size:1rem;line-height:1.8;max-width:540px;font-weight:300}
+ 
+/* ABOUT */
+.about{padding:8rem 5%;background:var(--bg2);position:relative;overflow:hidden}
+.about-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,var(--o) 40%,var(--o2) 60%,transparent 100%)}
+.about-layout{display:grid;grid-template-columns:1.1fr 0.9fr;gap:8rem;margin-top:5rem;align-items:start}
+.about-body{display:flex;flex-direction:column;gap:0}
+.about-body p{color:var(--muted2);line-height:1.9;font-size:1rem;margin-bottom:1.5rem;font-weight:300;border-left:2px solid transparent;padding-left:0;transition:all 0.3s}
+.about-body p:first-child{border-left-color:var(--o);padding-left:1.2rem;color:var(--white)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:sticky;top:120px}
+.stat-item{background:var(--bg3);padding:2.5rem 2rem;transition:background 0.3s}
+.stat-item:hover{background:rgba(255,69,0,0.06)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--o);letter-spacing:1px;line-height:1}
+.stat-l{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;font-weight:500}
+ 
+/* SERVICES */
+.services{padding:8rem 5%;background:var(--bg)}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.svc{background:var(--bg2);padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:background 0.3s;cursor:default}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--o),var(--o2));transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.svc:hover{background:rgba(255,69,0,0.04)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;color:var(--muted);letter-spacing:2px;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
+.svc-num::after{content:'';flex:1;height:1px;background:var(--border)}
+.svc-emoji{font-size:2rem;margin-bottom:1.2rem;display:block}
+.svc h3{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.65rem;line-height:1.3}
+.svc p{font-size:0.82rem;color:var(--muted);line-height:1.75;font-weight:300}
+ 
+/* CONTENT DEEP */
+.content-deep{padding:8rem 5%;background:var(--bg2)}
+.content-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-top:5rem;align-items:start}
+.c-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.c-item{background:var(--bg3);padding:1.4rem 1.6rem;display:flex;gap:1.2rem;transition:background 0.25s}
+.c-item:hover{background:rgba(255,69,0,0.05)}
+.c-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.c-item h4{font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;font-family:'DM Sans',sans-serif}
+.c-item p{font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:300}
+.insight-card{background:rgba(255,69,0,0.06);border:1px solid var(--border2);border-radius:8px;padding:2.5rem;position:sticky;top:120px}
+.insight-tag{display:inline-block;background:var(--o);color:#fff;font-size:0.65rem;font-weight:700;padding:4px 10px;border-radius:2px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem}
+.insight-card h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:1.2rem;line-height:1.35}
+.insight-card p{font-size:0.88rem;color:var(--muted2);line-height:1.8;margin-bottom:0.9rem;font-weight:300}
+ 
+/* WHY US */
+.why{padding:8rem 5%;background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:5rem}
+.why-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2.5rem;position:relative;overflow:hidden;transition:all 0.3s;cursor:default}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--o),transparent);opacity:0;transition:opacity 0.3s}
+.why-card:hover{border-color:rgba(255,69,0,0.25);transform:translateY(-5px)}
+.why-card:hover::before{opacity:1}
+.why-n{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,69,0,0.1);line-height:1;margin-bottom:1.2rem;letter-spacing:2px}
+.why-card h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.6rem;font-family:'DM Sans',sans-serif}
+.why-card p{font-size:0.85rem;color:var(--muted);line-height:1.75;font-weight:300}
+ 
+/* TOOLS BELT */
+.tools{padding:4rem 5%;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.tools-scroll{overflow:hidden;margin-top:2.5rem;-webkit-mask:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}
+.tools-track{display:flex;gap:1rem;animation:marquee 24s linear infinite;width:max-content}
+.tool-tag{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:0.55rem 1.2rem;font-size:0.8rem;font-weight:500;color:var(--muted2);white-space:nowrap;display:flex;align-items:center;gap:8px;flex-shrink:0;letter-spacing:0.02em;transition:all 0.2s}
+.tool-tag:hover{border-color:var(--border2);color:var(--white)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+ 
+/* COMPARE */
+.compare{padding:8rem 5%;background:var(--bg)}
+.tbl-wrap{margin-top:4rem;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--bg2)}
+th{padding:1.2rem 1.6rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:left}
+th:first-child{color:var(--white)}
+th.c-org{color:var(--o);border-bottom:2px solid var(--o)}
+th.c-paid{color:var(--o3);border-bottom:2px solid var(--o3)}
+td{padding:1rem 1.6rem;font-size:0.88rem;color:var(--muted2);border-top:1px solid var(--border);font-weight:300}
+tr:hover td{background:rgba(255,255,255,0.012)}
+td:first-child{font-weight:600;color:var(--white);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:500}
+.take{background:rgba(255,69,0,0.05);border:1px solid var(--border2);border-radius:8px;padding:2rem;margin-top:1.5rem}
+.take h4{font-size:0.9rem;font-weight:600;color:var(--o);margin-bottom:0.6rem}
+.take p{font-size:0.88rem;color:var(--muted2);line-height:1.8;font-weight:300}
+ 
+/* INDUSTRIES */
+.industries{padding:8rem 5%;background:var(--bg2)}
+.ind-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:4rem}
+.ind{background:var(--bg3);padding:2rem 1.5rem;transition:all 0.25s;cursor:default}
+.ind:hover{background:rgba(255,69,0,0.05)}
+.ind-ico{font-size:1.8rem;margin-bottom:1rem;display:block}
+.ind h3{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.35rem;font-family:'DM Sans',sans-serif}
+.ind p{font-size:0.77rem;color:var(--muted);line-height:1.6;font-weight:300}
+ 
+/* TESTIMONIALS */
+.testimonials{padding:8rem 5%;background:var(--bg)}
+.t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:4rem}
+.t-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2.5rem;position:relative;overflow:hidden;transition:border-color 0.3s}
+.t-card:hover{border-color:rgba(255,69,0,0.25)}
+.t-quote{position:absolute;top:-1rem;right:2rem;font-family:'Fraunces',serif;font-size:9rem;color:rgba(255,69,0,0.06);line-height:1;pointer-events:none}
+.t-stars{color:var(--o);font-size:0.8rem;letter-spacing:3px;margin-bottom:1.2rem}
+.t-txt{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--muted2);line-height:1.8;font-style:italic;margin-bottom:2rem;font-weight:300;position:relative;z-index:1}
+.t-auth{display:flex;align-items:center;gap:12px}
+.t-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0}
+.av1{background:rgba(255,69,0,0.2);color:var(--o2)}
+.av2{background:rgba(45,212,191,0.15);color:#2DD4BF}
+.av3{background:rgba(168,85,247,0.15);color:#C084FC}
+.av4{background:rgba(251,191,36,0.15);color:#FBB124}
+.t-name{font-size:0.9rem;font-weight:600;color:var(--white)}
+.t-role{font-size:0.77rem;color:var(--muted);font-weight:300}
+ 
+/* CTA */
+.cta{padding:10rem 5%;text-align:center;position:relative;overflow:hidden;background:var(--bg2)}
+.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(255,69,0,0.12) 0%,transparent 70%);pointer-events:none}
+.cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:0.9;letter-spacing:2px;color:var(--white);margin-bottom:1.5rem;position:relative;z-index:1}
+.cta-big em{color:var(--o);font-family:'Fraunces',serif;font-style:italic;font-weight:300}
+.cta p{color:var(--muted2);max-width:440px;margin:0 auto 3rem;line-height:1.8;font-weight:300;position:relative;z-index:1}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.e-input{padding:1rem 1.5rem;border-radius:4px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:var(--white);font-size:0.9rem;font-family:'DM Sans',sans-serif;width:300px;outline:none;transition:border 0.2s}
+.e-input::placeholder{color:var(--muted)}
+.e-input:focus{border-color:var(--o);background:rgba(255,69,0,0.04)}
+.cta-phone{margin-top:1.5rem;font-size:0.85rem;color:var(--muted);position:relative;z-index:1}
+.cta-phone strong{color:var(--o2)}
+ 
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:6rem 5% 3rem}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:5rem;padding-bottom:4rem;border-bottom:1px solid var(--border)}
+.ft-brand{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:2px;margin-bottom:0.8rem}
+.ft-brand span{color:var(--o)}
+.ft-desc{font-size:0.85rem;color:var(--muted);line-height:1.75;max-width:240px;margin-bottom:1.5rem;font-weight:300}
+.ft-contact a,.ft-contact p{font-size:0.8rem;color:var(--muted);text-decoration:none;display:block;margin-bottom:0.5rem;transition:color 0.2s;font-weight:300}
+.ft-contact a:hover{color:var(--o2)}
+.ft-socials{display:flex;gap:0.6rem;margin-top:1.2rem}
+.soc{width:32px;height:32px;border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;text-decoration:none;color:var(--muted);transition:all 0.2s;font-weight:600}
+.soc:hover{border-color:var(--o);color:var(--o)}
+.ft-col h4{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--white);margin-bottom:1.4rem}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.ft-col ul a{font-size:0.8rem;color:var(--muted);text-decoration:none;transition:color 0.2s;font-weight:300}
+.ft-col ul a:hover{color:var(--o2)}
+.nl-box{background:rgba(255,69,0,0.06);border:1px solid var(--border2);border-radius:6px;padding:1.5rem}
+.nl-box p{font-size:0.8rem;color:var(--muted);margin-bottom:1rem;line-height:1.65;font-weight:300}
+.nl-row{display:flex;flex-direction:column;gap:0.5rem}
+.nl-inp{padding:0.6rem 0.9rem;border-radius:4px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--white);font-size:0.8rem;font-family:'DM Sans',sans-serif;outline:none;transition:border 0.2s}
+.nl-inp::placeholder{color:var(--muted)}
+.nl-inp:focus{border-color:var(--border2)}
+.nl-sub{background:var(--o);color:#fff;border:none;padding:0.6rem 1rem;border-radius:4px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;letter-spacing:0.04em}
+.nl-sub:hover{background:var(--o2)}
+.ft-bottom{padding-top:2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-bottom p{font-size:0.76rem;color:var(--muted)}
+.ft-links{display:flex;gap:1.5rem}
+.ft-links a{font-size:0.76rem;color:var(--muted);text-decoration:none;transition:color 0.2s;font-weight:300}
+.ft-links a:hover{color:var(--white)}
+ 
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+ 
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .ind-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .about-layout,.content-layout{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .t-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:3rem}
+  .nav-links{display:none}
+  .services-header{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:600px){
+  .svc-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr}
+  .hero-numbers{gap:2rem}
+  .cur,.cur-ring{display:none}
+}
+</style>
+</head>
+<body>
+ 
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cring"></div>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Growth<span>Sphere</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Free Call</button>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-noise"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="hero-pill-dot"></span>#1 Digital Marketing Agency in India</div>
+    <h1 class="hero-headline">
+      WE DON'T<br>
+      <em class="line2">Market,</em>
+      <span class="line3">We Grow.</span>
+    </h1>
+    <p class="hero-sub">GrowthSphere helps businesses get more visibility, more leads, and more revenue — through strategies built around your goals, not generic templates.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start Growing Today</button>
+      <button class="btn-line" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">📞 Book a Free Call</button>
+    </div>
+    <div class="hero-numbers">
+      <div class="hero-num"><strong>80<span>+</span></strong><small>Satisfied Clients</small></div>
+      <div class="hero-num"><strong>2K<span>+</span></strong><small>Campaigns Run</small></div>
+      <div class="hero-num"><strong>10<span>+</span></strong><small>Industries Served</small></div>
+      <div class="hero-num"><strong>3<span>+</span></strong><small>Countries</small></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <div class="marquee-item">Content Marketing</div>
+    <div class="marquee-item">PPC & Lead Gen</div>
+    <div class="marquee-item">SEO</div>
+    <div class="marquee-item">Branding</div>
+    <div class="marquee-item">Web Design</div>
+    <div class="marquee-item">Performance Marketing</div>
+    <div class="marquee-item">Email & WhatsApp</div>
+    <div class="marquee-item">E-commerce</div>
+    <div class="marquee-item">Social Media</div>
+    <div class="marquee-item">Content Marketing</div>
+    <div class="marquee-item">PPC & Lead Gen</div>
+    <div class="marquee-item">SEO</div>
+    <div class="marquee-item">Branding</div>
+    <div class="marquee-item">Web Design</div>
+    <div class="marquee-item">Performance Marketing</div>
+    <div class="marquee-item">Email & WhatsApp</div>
+    <div class="marquee-item">E-commerce</div>
+    <div class="marquee-item">Social Media</div>
+  </div>
+</div>
+ 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-top-line"></div>
+  <div class="sec-eyebrow">About GrowthSphere</div>
+  <h2 class="sec-h2">Actually Obsessed<br>With Your <em>Growth</em></h2>
+  <div class="about-layout">
+    <div class="about-body reveal">
+      <p>We started GrowthSphere with one simple belief — businesses deserve marketing that works. Not vanity metrics. Not hollow promises. Real, measurable growth you can see in your revenue.</p>
+      <p>We're a team of strategists, creatives, and performance marketers who live and breathe digital. From day one, we dig into your business — your audience, your competitors, your goals — and build a plan made for you, not copy-pasted from a template.</p>
+      <p>Whether you're a startup looking to make your first mark online or an established brand ready to scale aggressively, we have the team, the tools, and the track record to get you there.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-item"><div class="stat-n">80+</div><div class="stat-l">Happy Clients</div></div>
+      <div class="stat-item"><div class="stat-n">2K+</div><div class="stat-l">Campaigns</div></div>
+      <div class="stat-item"><div class="stat-n">6K+</div><div class="stat-l">Hours Dedicated</div></div>
+      <div class="stat-item"><div class="stat-n">3+</div><div class="stat-l">Countries</div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="sec-eyebrow">What We Do</div>
+      <h2 class="sec-h2">Everything to<br><em>Dominate</em> Online</h2>
+    </div>
+    <p class="sec-p">From visibility to conversions, we cover the full digital journey.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc reveal"><div class="svc-num">01</div><span class="svc-emoji">✍️</span><h3>Content Marketing</h3><p>Content your audience actually wants to read, watch, and share — every piece built to attract, engage, and convert.</p></div>
+    <div class="svc reveal"><div class="svc-num">02</div><span class="svc-emoji">🎯</span><h3>PPC & Lead Generation</h3><p>Laser-targeted, data-backed paid campaigns on Google and Meta — optimized to give you the best return on every rupee.</p></div>
+    <div class="svc reveal"><div class="svc-num">03</div><span class="svc-emoji">💻</span><h3>Website Design</h3><p>Fast, clean, conversion-focused websites that work 24/7 turning visitors into actual customers.</p></div>
+    <div class="svc reveal"><div class="svc-num">04</div><span class="svc-emoji">📊</span><h3>Performance Marketing</h3><p>Every campaign tracked, tested, and improved continuously. We obsess over your numbers until they move the right way.</p></div>
+    <div class="svc reveal"><div class="svc-num">05</div><span class="svc-emoji">🛒</span><h3>E-commerce Marketing</h3><p>Product ads, retargeting, store optimization — more sales at lower cost per acquisition.</p></div>
+    <div class="svc reveal"><div class="svc-num">06</div><span class="svc-emoji">🎨</span><h3>Branding</h3><p>An identity — from visuals to voice — that makes people stop scrolling and remember you.</p></div>
+    <div class="svc reveal"><div class="svc-num">07</div><span class="svc-emoji">🔍</span><h3>SEO</h3><p>Long-term organic visibility that keeps delivering even when you're not running ads.</p></div>
+    <div class="svc reveal"><div class="svc-num">08</div><span class="svc-emoji">📩</span><h3>Email & WhatsApp</h3><p>Direct, personal, incredibly effective. Campaigns people actually open and act on.</p></div>
+  </div>
+</section>
+ 
+<!-- CONTENT DEEP DIVE -->
+<section class="content-deep" id="content">
+  <div class="sec-eyebrow">Content Marketing</div>
+  <h2 class="sec-h2">What a Content Strategy<br><em>Actually</em> Includes</h2>
+  <p class="sec-p">Most businesses know they need content — but have no idea what that really means. We build strategies tailored to your industry and goals.</p>
+  <div class="content-layout">
+    <div class="c-list reveal">
+      <div class="c-item"><div class="c-icon">📝</div><div><h4>Blog Articles & SEO Content</h4><p>In-depth, keyword-optimized articles that rank on Google and bring consistent organic traffic month after month.</p></div></div>
+      <div class="c-item"><div class="c-icon">📱</div><div><h4>Social Media Content</h4><p>Scroll-stopping posts, reels, carousels, and captions across Instagram, LinkedIn, Facebook, and more.</p></div></div>
+      <div class="c-item"><div class="c-icon">📧</div><div><h4>Email Newsletters</h4><p>Value-packed emails that keep your audience warm, build trust, and drive repeat purchases.</p></div></div>
+      <div class="c-item"><div class="c-icon">🎥</div><div><h4>Video Scripts & YouTube Content</h4><p>Scripts made for the camera — engaging, informative, built to keep viewers watching till the end.</p></div></div>
+      <div class="c-item"><div class="c-icon">📊</div><div><h4>Infographics & Visual Content</h4><p>Complex ideas made simple. Visual content easy to share and impossible to scroll past.</p></div></div>
+      <div class="c-item"><div class="c-icon">📄</div><div><h4>Case Studies & Whitepapers</h4><p>Professional documents that showcase your expertise and build credibility with high-value clients.</p></div></div>
+      <div class="c-item"><div class="c-icon">🖊️</div><div><h4>Landing Page & Ad Copy</h4><p>Every word written to move people toward action. Copy that sells.</p></div></div>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-tag">Key Insight</div>
+      <h3>Every piece of content has a job</h3>
+      <p>Every piece we create has a clear job — attract, educate, or convert. We never create content just to fill a calendar.</p>
+      <p>A well-structured strategy is not about producing more. It's about producing the <em>right</em> content for the right audience at the right moment in their journey.</p>
+      <p>When all three align — the message, the audience, and the timing — content becomes your most powerful sales tool, working 24/7 without spending a rupee on ads.</p>
+      <button class="btn-primary" style="margin-top:1.5rem;font-size:0.85rem;padding:0.85rem 1.8rem" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Content Strategy →</button>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="sec-eyebrow">Why GrowthSphere</div>
+  <h2 class="sec-h2">Here's What Makes<br>Us <em>Different</em></h2>
+  <p class="sec-p">A lot of agencies talk about results. We build systems that deliver them.</p>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-n">01</div><h3>Tailored — Not Templates</h3><p>Every client gets a strategy built from scratch based on your industry, audience, budget, and goals. What works for someone else might not work for you — and we know that.</p></div>
+    <div class="why-card reveal"><div class="why-n">02</div><h3>Premium Quality at Every Step</h3><p>From the first strategy deck to the last campaign report — everything is built to a standard we're proud of. No rushed work, no shortcuts.</p></div>
+    <div class="why-card reveal"><div class="why-n">03</div><h3>100% White Label Available</h3><p>Agency looking for a reliable backend partner? We work completely under your brand. Your clients never know we exist — that's the deal.</p></div>
+    <div class="why-card reveal"><div class="why-n">04</div><h3>Data-Driven, Always</h3><p>Every move backed by data. We track, analyze, and optimize constantly — because guessing is expensive and we'd rather be right.</p></div>
+    <div class="why-card reveal"><div class="why-n">05</div><h3>We Keep It Honest</h3><p>No fake promises. No inflated projections. We tell you exactly what's achievable, in what timeframe, and at what cost. Always transparent.</p></div>
+    <div class="why-card reveal"><div class="why-n">06</div><h3>Guaranteed Results</h3><p>We don't take on a client unless we're confident we can deliver. When you work with GrowthSphere, we put our reputation behind every project.</p></div>
+  </div>
+</section>
+ 
+<!-- TOOLS -->
+<section class="tools">
+  <div class="sec-eyebrow">Tools & Technology</div>
+  <h2 class="sec-h2">Our <em>Marketing</em> Stack</h2>
+  <div class="tools-scroll">
+    <div class="tools-track">
+      <div class="tool-tag">🔴 Google Ads</div>
+      <div class="tool-tag">🔵 Meta Business</div>
+      <div class="tool-tag">🟠 HubSpot</div>
+      <div class="tool-tag">🎨 Canva</div>
+      <div class="tool-tag">🟢 Shopify</div>
+      <div class="tool-tag">🔶 SEMrush</div>
+      <div class="tool-tag">📧 Mailchimp</div>
+      <div class="tool-tag">🔥 Hotjar</div>
+      <div class="tool-tag">📊 Google Analytics</div>
+      <div class="tool-tag">🔍 Ahrefs</div>
+      <div class="tool-tag">📱 Buffer</div>
+      <div class="tool-tag">💬 WhatsApp Business</div>
+      <div class="tool-tag">🔴 Google Ads</div>
+      <div class="tool-tag">🔵 Meta Business</div>
+      <div class="tool-tag">🟠 HubSpot</div>
+      <div class="tool-tag">🎨 Canva</div>
+      <div class="tool-tag">🟢 Shopify</div>
+      <div class="tool-tag">🔶 SEMrush</div>
+      <div class="tool-tag">📧 Mailchimp</div>
+      <div class="tool-tag">🔥 Hotjar</div>
+      <div class="tool-tag">📊 Google Analytics</div>
+      <div class="tool-tag">🔍 Ahrefs</div>
+      <div class="tool-tag">📱 Buffer</div>
+      <div class="tool-tag">💬 WhatsApp Business</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- COMPARE -->
+<section class="compare">
+  <div class="sec-eyebrow">Strategy Comparison</div>
+  <h2 class="sec-h2">Organic vs <em>Paid</em> —<br>Which Do You Need?</h2>
+  <p class="sec-p">Short answer — both. Here's how they differ so you understand what's right for your stage of growth.</p>
+  <div class="tbl-wrap reveal">
+    <table>
+      <thead>
+        <tr><th>Feature</th><th class="c-org">Organic Marketing</th><th class="c-paid">Paid Marketing</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cost</td><td>Low long-term investment</td><td>Budget-dependent</td></tr>
+        <tr><td>Results Timeline</td><td>Gradual but sustainable</td><td>Fast, near-immediate</td></tr>
+        <tr><td>Audience Reach</td><td>Broad brand awareness</td><td>Highly targeted</td></tr>
+        <tr><td>Engagement Quality</td><td>High trust & loyalty</td><td>High reach & visibility</td></tr>
+        <tr><td>Sustainability</td><td>Long-lasting, keeps working</td><td>Stops when budget stops</td></tr>
+        <tr><td>Control</td><td>Medium</td><td>Very high</td></tr>
+        <tr><td>Trust & Credibility</td><td>Very high</td><td>Moderate</td></tr>
+        <tr><td>Best For</td><td>Brand building & SEO</td><td>Lead gen & quick sales</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="take reveal">
+    <h4>🎯 Our Take</h4>
+    <p>The smartest brands use both in combination. Paid gets you results now. Organic builds the foundation that keeps delivering long-term. At GrowthSphere, we find the right balance for your stage of business — so you're never overspending or underperforming.</p>
+  </div>
+</section>
+ 
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="sec-eyebrow">Industries</div>
+  <h2 class="sec-h2">Industries<br>That <em>Matter</em></h2>
+  <p class="sec-p">Different industries. Different challenges. One growth-focused approach.</p>
+  <div class="ind-grid">
+    <div class="ind reveal"><span class="ind-ico">🛒</span><h3>E-commerce</h3><p>Product ads, store optimisation, and scaling revenue online.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🏥</span><h3>Healthcare</h3><p>Building trust, driving appointments, growing patient base.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🏠</span><h3>Real Estate</h3><p>High-quality leads for residential and commercial projects.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🎓</span><h3>Education</h3><p>Student acquisition and brand authority building.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🍽️</span><h3>Food & Restaurant</h3><p>Local visibility, delivery platform marketing, social presence.</p></div>
+    <div class="ind reveal"><span class="ind-ico">💼</span><h3>B2B & SaaS</h3><p>LinkedIn marketing, content-led growth, demo funnels.</p></div>
+    <div class="ind reveal"><span class="ind-ico">👗</span><h3>Fashion</h3><p>Aesthetic branding, influencer strategy, social commerce.</p></div>
+    <div class="ind reveal"><span class="ind-ico">💪</span><h3>Fitness</h3><p>Community building, class bookings, and local SEO.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🛋️</span><h3>Home Decor</h3><p>Visual-first content strategy and high-intent paid campaigns.</p></div>
+    <div class="ind reveal"><span class="ind-ico">🏭</span><h3>Manufacturing</h3><p>B2B lead generation and LinkedIn brand positioning.</p></div>
+  </div>
+</section>
+ 
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="sec-eyebrow">Client Feedback</div>
+  <h2 class="sec-h2">Trusted by Growing<br><em>Businesses</em> Across India</h2>
+  <p class="sec-p">Don't take our word for it — here's what our clients actually say.</p>
+  <div class="t-grid">
+    <div class="t-card reveal">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-txt">"We tried two agencies before GrowthSphere and got nothing. Within 60 days of working with them, our leads doubled. Their team is transparent, responsive, and they actually care about results."</p>
+      <div class="t-auth"><div class="t-av av1">RS</div><div><div class="t-name">Rahul S.</div><div class="t-role">E-commerce Business Owner</div></div></div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-txt">"The content strategy they built completely changed our online presence. Website traffic went up 3x and we're now getting inbound enquiries every week without running a single ad."</p>
+      <div class="t-auth"><div class="t-av av2">PM</div><div><div class="t-name">Priya M.</div><div class="t-role">SaaS Startup Founder</div></div></div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-txt">"GrowthSphere handles our entire digital marketing — SEO, paid ads, social media, email. Best decision we made. They feel less like an agency and more like our in-house team."</p>
+      <div class="t-auth"><div class="t-av av3">AD</div><div><div class="t-name">Ankit D.</div><div class="t-role">Real Estate Developer</div></div></div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <p class="t-txt">"Professional, creative, and results-focused. They revamped our brand identity and launched a Google Ads campaign that gave us a 4x return in the first month."</p>
+      <div class="t-auth"><div class="t-av av4">SR</div><div><div class="t-name">Sneha R.</div><div class="t-role">Fashion Brand Owner</div></div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-glow"></div>
+  <h2 class="cta-big">Ready to<br><em>Grow</em> Your Brand?</h2>
+  <p>Join 80+ businesses that chose GrowthSphere to get more visibility, more leads, and real measurable results.</p>
+  <div class="cta-row">
+    <input class="e-input" type="email" placeholder="Enter your email address"/>
+    <button class="btn-primary">Start Growing Today →</button>
+  </div>
+  <p class="cta-phone">Or call us directly — <strong>+91 9824571313</strong></p>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">Growth<span>Sphere</span></div>
+      <p class="ft-desc">We help businesses grow smarter online. Strategy, creativity, and performance — all under one roof.</p>
+      <div class="ft-contact">
+        <a href="tel:+919824571313">📞 +91 9824571313</a>
+        <a href="mailto:hello@growthsphere.com">✉️ hello@GrowthSphere.com</a>
+        <p>🌐 www.GrowthSphere.com</p>
+        <p>📍 India</p>
+      </div>
+      <div class="ft-socials">
+        <a class="soc" href="#">IG</a>
+        <a class="soc" href="#">in</a>
+        <a class="soc" href="#">FB</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Content Marketing</a></li>
+        <li><a href="#">SEO</a></li>
+        <li><a href="#">PPC & Lead Gen</a></li>
+        <li><a href="#">Social Media</a></li>
+        <li><a href="#">Web Design</a></li>
+        <li><a href="#">Branding</a></li>
+        <li><a href="#">E-commerce</a></li>
+        <li><a href="#">Email & WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Newsletter</h4>
+      <div class="nl-box">
+        <p>Get weekly marketing tips that actually work — no spam, ever.</p>
+        <div class="nl-row">
+          <input class="nl-inp" type="email" placeholder="Your Email Address"/>
+          <button class="nl-sub">Subscribe →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2025 GrowthSphere Marketing Solutions. All Rights Reserved.</p>
+    <div class="ft-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+ 
+<script>
+// Custom cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('button,a,.svc,.why-card,.ind,.t-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(2.2)';ring.style.borderColor='rgba(255,69,0,0.7)'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(255,69,0,0.5)'});
+});
+ 
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{e.target.classList.add('visible')},e.target.dataset.delay||0);
+    }
+  });
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach((el,i)=>{obs.observe(el)});
+ 
+// Stagger siblings
+document.querySelectorAll('.svc-grid,.why-grid,.ind-grid,.t-grid').forEach(grid=>{
+  [...grid.querySelectorAll('.reveal')].forEach((el,i)=>{el.dataset.delay=i*80});
+});
+</script>
+</body>
+</html>
